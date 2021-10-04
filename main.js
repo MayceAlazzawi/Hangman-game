@@ -84,21 +84,23 @@ lettersAndSpace.forEach(letter => {
 });
 
 // Handiling clicking on letter
-document.addEventListener('click', (e) => {
+document.addEventListener("click", (e) => {
 
-  if (e.target.className === 'letter-box') {
+  if (e.target.className === 'letters-box') {
 
-    e.target.classList.add('clicked');
+    e.target.classList.add("clicked");
 
     // Get clicked letters 
     let theClickedLetter = e.target.innerHTML.toLowerCase();
-    
-    lettersAndSpace.forEach((wordLetter, index) => {
+   
+    lettersAndSpace.forEach((wordletter, index) => {
 
-      //if the clicked letter equals one of the chosen word letter
-      if (theClickedLetter === wordLetter ) {}
-      console.log(`found at index number ${index}`)
-    })
-    
+      //if the clicked letter equals one of the chosen word's letters
+    if (theClickedLetter === wordletter) {
+      console.log(`found at index number ${index}`);
+    } 
+
+    });
+
   }
 })

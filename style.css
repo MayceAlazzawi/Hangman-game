@@ -191,3 +191,8 @@ transform: rotate(30deg);
   top: 50%;
   transform: translate(-50%, -50%);
 }
+.letters .letters-box.clicked {
+  background-color: #222;
+  opacity: .2;
+  pointer-events: none;
+}
