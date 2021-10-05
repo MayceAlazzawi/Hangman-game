@@ -1,5 +1,5 @@
 //letters
-const letters='abcdefghijkmnopqrstuvwxyz';
+const letters='abcdefghijkmnopqrstulvwxyz';
 
 //Get Array From Letters
 let lettersArray = Array.from(letters);
@@ -83,8 +83,20 @@ lettersAndSpace.forEach(letter => {
 
 });
 
+
+// Select guess spans
+let guessSpans = document.querySelectorAll(".letters-guess span");
+let theDraw = document.querySelector('.hangman-draw');
+let wrongAttempts = 0;
+
 // Handiling clicking on letter
 document.addEventListener("click", (e) => {
+
+
+
+
+  // Set the chose status
+let theStatus = false;
 
   if (e.target.className === 'letters-box') {
 
@@ -92,15 +104,75 @@ document.addEventListener("click", (e) => {
 
     // Get clicked letters 
     let theClickedLetter = e.target.innerHTML.toLowerCase();
-   
-    lettersAndSpace.forEach((wordletter, index) => {
+  
+    // The chosen word
+    let theChosenWord = Array.from(randomValueValue.toLowerCase());
+    
+    theChosenWord.forEach((wordLetter, wordIndex) => {
 
-      //if the clicked letter equals one of the chosen word's letters
-    if (theClickedLetter === wordletter) {
-      console.log(`found at index number ${index}`);
-    } 
+    //if the clicked letter equals one of the chosen word's letters
+    if (theClickedLetter == wordLetter) {
+    
+     // Loop On All Guess Spa
+     
+     //set status to correct
+     theStatus= true;
+     
+     // Loop on all guess spans
+     guessSpans.forEach((span, spanIndex) => {
 
+      if (wordIndex === spanIndex) {
+
+        span.innerHTML = theClickedLetter;
+
+      }
     });
+   
+    }
+    })
+    if (theStatus !== true) {
 
+      //increase the write attempts
+      wrongAttempts++;
+      
+      //add class wrong on the draw element
+      theDraw.classList.add(`wrong-${wrongAttempts}`)
+
+      //Play fail sound 
+      document.getElementById('fail').play();
+
+      if (wrongAttempts === 8) {
+
+        endGame();
+
+        lettersContainer.classList.add('finished');
+
+      }
+
+    } else {
+       //Play success sound 
+       document.getElementById('success').play();
+       
+    }
   }
 })
+
+// End Game Function
+function endGame() {
+
+  // Create Popup Div
+  let div = document.createElement("div");
+
+  // Create Text
+  let divText = document.createTextNode(`Game Over, The Word Is ${randomValueValue}`);
+
+  // Append Text To Div
+  div.appendChild(divText);
+
+  // Add Class On Div
+  div.className = 'popup';
+
+  // Append To The Body
+  document.body.appendChild(div);
+
+}

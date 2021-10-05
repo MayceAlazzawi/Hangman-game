@@ -38,101 +38,143 @@ body {
   text-transform: capitalize;
   color: #e91e63;
 font-weight: bold;
+}.hangman-draw {
+  flex: 1;
+  background-color: #F8F8F8;
+  padding: 20px;
+  height: 324px;
 }
 .hangman-draw .the-draw {
-  width:60px;
+  width: 60px;
   height: 280px;
   border-bottom: 4px solid #222;
   position: relative;
-  margin:auto; 
+  margin: auto;
+  left: -60px;
+  display: none;
 }
-.hangman-draw .the-stand:before {
-  content: ' ';
+.hangman-draw .the-stand {
   position: absolute;
-  width:4px;
+  width: 4px;
   background-color: #222;
   height: 100%;
   left: 50%;
-  margin-left:-2px;
+  margin-left: -2px;
+  display: none;
+}
+.hangman-draw .the-hang {
+  display: none;
 }
 .hangman-draw .the-hang:before {
-content:'';
-position: absolute;
-height: 4px;
-background:#222;
-width:100px;
-left: 30px;
-top: 0px;
-}
-.hangman-draw .the-man:after {
-  content:'';
-  position:absolute;
-  width:4px;
-  height: 30px;
-  background-color:#222;
-  left:130px;
-  top:0px;
-}
-.hangman-draw .the-rope {
-  width: 70px;
-  height:70px;
-  border-radius:50%;
-  position: absolute;
-  left: 97px;
-  top: 30px;
-  border: 4px dashed #222;
-}
-.hangman-draw .the-man .head{
-  width: 50px;
-  height:50px;
-  border-radius: 50%;
-  border: 4px solid #222;
-  position: absolute;
-  top: 40px;
-  left: 107px;
-}
-.hangman-draw .the-man .body {
-  background-color:#222;
-  position: absolute;
-  width: 4px;
-  height:110px;
-  top:90px;
-  left: 130px;
-}
-
-.hangman-draw .the-man .hands:before, .hangman-draw .the-man .hands:after {
   content: '';
-  width: 50px;
   position: absolute;
   height: 4px;
   background-color: #222;
-  top: 100px;
+  width: 100px;
+  left: 30px;
+  top: 15px;
+}
+.hangman-draw .the-hang:after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 30px;
+  background-color: #222;
+  left: 130px;
+  top: 15px;
+}
+.hangman-draw .the-rope {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  left: 95px;
+  top: 45px;
+  border: 4px dashed #222;
+  display: none;
+}
+.hangman-draw .the-man .head {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid #222;
+  position: absolute;
+  left: 105px;
+  top: 55px;
+  display: none;
+}
+.hangman-draw .the-man .body {
+  position: absolute;
+  background-color: #222;
+  width: 4px;
+  height: 110px;
+  top: 102px;
+  left: 130px;
+  display: none;
+}
+.hangman-draw .the-man .hands {
+  display: none;
 }
 .hangman-draw .the-man .hands:before {
-left: 85px;
-transform: rotate(30deg);
+  left: 85px;
+  transform: rotate(30deg);
 }
 .hangman-draw .the-man .hands:after {
   left: 130px;
   transform: rotate(-30deg);
 }
-
-.hangman-draw .the-man .legs:before, 
+.hangman-draw .the-man .hands:before,
+.hangman-draw .the-man .hands:after {
+  content: '';
+  width: 50px;
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+  top: 140px;
+}
+.hangman-draw .the-man .legs {
+  display: none;
+}
+.hangman-draw .the-man .legs:before {
+  left: 85px;
+  transform: rotate(-30deg);
+}
+.hangman-draw .the-man .legs:after {
+  left: 130px;
+  transform: rotate(30deg);
+}
+.hangman-draw .the-man .legs:before,
 .hangman-draw .the-man .legs:after {
   content: '';
   width: 50px;
   position: absolute;
   height: 4px;
   background-color: #222;
-  top: 209px;
+  top: 220px;
 }
-.hangman-draw .the-man .legs:after {
-  left: 130px;
-  transform: rotate(30deg);
+.hangman-draw.wrong-1 .the-draw {
+  display: block;
 }
-.hangman-draw .the-man .legs:before {
-  left: 85px;
-  transform: rotate(-30deg);
+.hangman-draw.wrong-2 .the-stand {
+  display: block;
+}
+.hangman-draw.wrong-3 .the-hang {
+  display: block;
+}
+.hangman-draw.wrong-4 .the-rope {
+  display: block;
+}
+.hangman-draw.wrong-5 .head {
+  display: block;
+}
+.hangman-draw.wrong-6 .body {
+  display: block;
+}
+.hangman-draw.wrong-7 .hands {
+  display: block;
+}
+.hangman-draw.wrong-8 .legs {
+  display: block;
 }
 .letters {
   flex: 1;
@@ -196,3 +238,15 @@ transform: rotate(30deg);
   opacity: .2;
   pointer-events: none;
 }
+.popup {
+  position: fixed;
+  background-color: #009688;
+  padding: 100px 20px;
+  width: 80%;
+  top: 10%;
+  left: 10%;
+  text-align: center;
+  font-size: 40px;
+  border: 1px solid #CCC;
+  color: #FFF;
+} 
